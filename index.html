@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Document</title>
+    <title>Beautiful Orbit</title>
+    <link rel="icon" href="icon.png">
     <style>
         body {
             margin: 0;
@@ -9,69 +10,91 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            background-color: black;
+            background: radial-gradient(ellipse at center, #000000 0%, #0a0a2a 100%);
             overflow: hidden;
+            color: white;
+            font-family: sans-serif;
         }
+
         .container {
             font-size: 10px;
             width: 40em;
             height: 40em;
             position: relative;
         }
+
         .sun {
             position: absolute;
-            top: 15em;
-            left: 15em;
+            top: 50%;
+            left: 50%;
             width: 10em;
             height: 10em;
-            background-color: yellow;
+            background: radial-gradient(circle, #ffdd00 0%, #ff8800 70%, #ff6600 100%);
             border-radius: 50%;
-            box-shadow: 0 0 3em white;          
+            box-shadow: 0 0 5em #ffd700, 0 0 10em #ff8c00;
+            transform: translate(-50%, -50%);
         }
-        .earth,.moon {
+
+        .orbit {
             position: absolute;
-            border-style: solid;
-            border-color: white transparent transparent transparent;
-            border-width: 0.1em 0.1em 0 0;
+            top: 50%;
+            left: 50%;
+            border: 1px dashed rgba(255, 255, 255, 0.2);
             border-radius: 50%;
+            transform: translate(-50%, -50%);
         }
-        .earth {
-            top: 5em;
-            left: 5em;
+
+        .earth-orbit {
             width: 30em;
             height: 30em;
-            animation: orbit 36.5s linear infinite;
+            animation: orbitEarth 36.5s linear infinite;
         }
-        .moon {
-            top: 0;
-            right: 0;
-            width: 8em;
-            height: 8em;
-            animation: orbit 2.7s linear infinite;
-        }
-        .earth::before,
-        .moon::before {
-            content: '';
+
+        .earth {
             position: absolute;
-            border-radius: 50%;
-        }
-        .earth::before {
-            top: 2.8em;
-            right: 2.8em;
+            top: 0;
+            left: 50%;
             width: 3em;
             height: 3em;
-            background-color: aqua;
+            background: radial-gradient(circle, #00ffff 0%, #0077be 100%);
+            border-radius: 50%;
+            box-shadow: 0 0 1em #00ffff;
+            transform: translate(-50%, -50%);
         }
-        .moon::before {
-            top: 0.8em;
-            right: 0.2em;
-            width: 1.2em;
-            height: 1.2em;
-            background-color: silver;
+
+        .moon-orbit {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 6em;
+            height: 6em;
+            border: 1px dashed rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            animation: orbitMoon 2.7s linear infinite;
         }
-        @keyframes orbit {
-            to {
-                transform: rotate(360deg);
+
+        .moon {
+            position: absolute;
+            top: 0;
+            left: 50%;
+            width: 1em;
+            height: 1em;
+            background: radial-gradient(circle, #dcdcdc 0%, #999999 100%);
+            border-radius: 50%;
+            box-shadow: 0 0 0.5em #dcdcdc;
+            transform: translate(-50%, -50%);
+        }
+
+        @keyframes orbitEarth {
+            100% {
+                transform: translate(-50%, -50%) rotate(360deg);
+            }
+        }
+
+        @keyframes orbitMoon {
+            100% {
+                transform: translate(-50%, -50%) rotate(360deg);
             }
         }
     </style>
@@ -79,8 +102,12 @@
 <body>
     <div class="container">
         <div class="sun"></div>
-        <div class="earth">
-            <div class="moon"></div>
+        <div class="orbit earth-orbit">
+            <div class="earth">
+                <div class="orbit moon-orbit">
+                    <div class="moon"></div>
+                </div>
+            </div>
         </div>
     </div>
 </body>
